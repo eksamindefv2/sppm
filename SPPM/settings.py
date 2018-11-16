@@ -128,7 +128,7 @@ USE_TZ = True
 
 
 LOGIN_REDIRECT_URL = 'sistem_home'
-LOGOUT_REDIRECT_URL = 'sistem_home'
+LOGOUT_REDIRECT_URL = 'login'
 
 
 
