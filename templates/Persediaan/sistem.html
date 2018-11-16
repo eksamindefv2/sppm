@@ -15,12 +15,18 @@
                             <div class="card-body">
                                 <h4 class="card-title">Senarai Sistem</h4>
                                 <h6 class="card-subtitle">Paparan menunjukkan senarai sistem yang telah didaftarkan. Jika terdapat sebarang penambahan, sila klik butang <b>'Tambah Sistem'</b></h6>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
                                 <div class="m-t-40">
                                         <div class="d-flex">
                                             <div class="mr-auto">
                                                 <div class="form-group">
-                                                    <button id="demo-btn-addrow" class="btn btn-primary btn-sm"><i class="icon wb-plus" aria-hidden="true"></i>Tambah Sistem
-                                                    </button></div>
+                                                    <a href="{% url 'sistem_new' %}" class="btn btn-primary" >Tambah Aktiviti</a></div>
                                             </div>
                                             <div class="ml-auto">
                                                 <div class="form-group">
@@ -59,8 +65,20 @@
 
                                             </td> 
                                               </tr>
-                                            {% endfor %}
-                                        </tfoot>
+                                              {% endfor %}
+                                        </tbody> 
+                                        <tfoot>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div class="text-right">
+                                                    <ul class="pagination">
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>     
+                                            
+                                        
                                     </table>
                                 </div>
                             </div>
