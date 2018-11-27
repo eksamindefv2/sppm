@@ -33,6 +33,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = "auth.User" 
 
 # Application definition
 
@@ -46,7 +47,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_python3_ldap',
     'Urusetia',
-    'Persediaan',
+    'Pentadbir',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

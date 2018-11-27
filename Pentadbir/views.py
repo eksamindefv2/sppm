@@ -11,20 +11,20 @@ def SenaraiSistem(request):
     # List of records
 
     # Query from MCDB#####################################################
-    posts = []
-    cnxn = pyodbc.connect("Driver={SQL Server Native Client 11.0};"
-	                      "Server=10.101.1.100;"
-	                      "Database=MCDB;"
-	                      "uid=sa;pwd=cdbdev@2017")
-    cursor = cnxn.cursor()
-    cursor.execute('SELECT * FROM TblPersonel')
+ #    posts = []
+ #    cnxn = pyodbc.connect("Driver={SQL Server Native Client 11.0};"
+	#                       "Server=10.101.1.100;"
+	#                       "Database=MCDB;"
+	#                       "uid=sa;pwd=cdbdev@2017")
+ #    cursor = cnxn.cursor()
+ #    cursor.execute('SELECT * FROM TblPersonel')
     
-    for obj in cursor.fetchall():
-    	posts.append({"IC": obj[0], "Nama": obj[3]})
-	# context = {'all_posts':cursor.fetchall()}
+ #    for obj in cursor.fetchall():
+ #    	posts.append({"IC": obj[0], "Nama": obj[3]})
+	# # context = {'all_posts':cursor.fetchall()}
 
 
-    print(posts)
+ #    print(posts)
 
     # Query from MCDB######################################################
 
@@ -34,7 +34,8 @@ def SenaraiSistem(request):
 
     a = TblSistem.objects.all().order_by('NamaSistem')
     print(a)
-    return render(request,'Persediaan/sistem.html',{ 'sistem': a,'posts':posts})
+    # return render(request,'Pentadbir/sistem.html',{ 'sistem': a,'posts':posts})
+    return render(request,'Pentadbir/sistem.html',{ 'sistem': a})
 
 
 def Sistem_new(request):
@@ -49,4 +50,4 @@ def Sistem_new(request):
 			return redirect(reverse_lazy('sistem_home'))
 	else:
 		form = TblSistemForm()
-	return render(request, 'persediaan/sistem_new.html', {'form': form})
+	return render(request, 'Pentadbir/sistem_new.html', {'form': form})
