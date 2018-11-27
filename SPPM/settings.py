@@ -215,9 +215,9 @@ LDAP_AUTH_FORMAT_SEARCH_FILTERS = "django_python3_ldap.utils.format_search_filte
 # the `ldap_sync_users` command will perform an anonymous query.
 # LDAP_AUTH_CONNECTION_USERNAME = None
 # LDAP_AUTH_CONNECTION_USERNAME = '790322085545@modnet.mindef.my'
-LDAP_AUTH_CONNECTION_USERNAME = '790322085545'
+LDAP_AUTH_CONNECTION_USERNAME = 'eksaad'
 # LDAP_AUTH_CONNECTION_PASSWORD = None
-LDAP_AUTH_CONNECTION_PASSWORD = 'Newnewnew**3'
+LDAP_AUTH_CONNECTION_PASSWORD = 'qaz@1234'
 
 # Set connection/receive timeouts (in seconds) on the underlying `ldap3` library.
 LDAP_AUTH_CONNECT_TIMEOUT = None
