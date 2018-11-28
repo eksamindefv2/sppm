@@ -20,10 +20,10 @@ class TblSistem(models.Model):
 # 	is_kjaudit = models.BooleanField(default = False)		
 # 	is_pemantau = models.BooleanField(default = False)
 
-# class Profil(models.Model):
-# 	user = models.OneToOneField(User, on_delete = models.CASCADE)
-# 	nokpten = models.CharField(max_length = 12,unique = True)
-# 	sistem = models.ManyToManyField(TblSistem)
+class UProfil(models.Model):
+	user = models.OneToOneField(User, on_delete = models.CASCADE)
+	nokpten = models.CharField(max_length = 12,unique = True)
+	Status = models.IntegerField('Status',null=False,default=1)
 
 # class Pengguna(models.Model):
 # 	user = models.OneToOneField(User, on_delete = models.CASCADE)
