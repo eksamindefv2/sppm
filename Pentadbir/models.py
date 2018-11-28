@@ -25,10 +25,28 @@ class UProfil(models.Model):
 	nokpten = models.CharField(max_length = 12,unique = True)
 	Status = models.IntegerField('Status',null=False,default=1)
 
+	def __str__(self):
+		return str(self.pk)
+
 # class Pengguna(models.Model):
 # 	user = models.OneToOneField(User, on_delete = models.CASCADE)
 # 	nokpten = models.CharField(max_length = 12,unique = True)
 	# sistem = models.ManyToManyField(TblSistem)
 
+class RefPeranan(models.Model):
+	Peranan = models.CharField('Peranan',max_length=100,null=False)
+	KodPeranan = models.IntegerField('KodPeranan',null=False,default=1)
+	Keterangan = models.CharField('Keterangan',max_length=200,null=False)
 
+	def __str__(self):
+		return str(self.pk)
+
+
+class UPeranan(models.Model):
+	Sistem = models.ForeignKey('TblSistem',on_delete=models.CASCADE)		
+	UProfil = models.ForeignKey('UProfil',on_delete=models.CASCADE)	
+	Peranan = models.ForeignKey('RefPeranan',on_delete=models.CASCADE)	
+
+	def __str__(self):
+		return str(self.pk)
 
