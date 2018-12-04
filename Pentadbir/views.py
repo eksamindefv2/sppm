@@ -51,3 +51,7 @@ def Sistem_new(request):
 	else:
 		form = TblSistemForm()
 	return render(request, 'Pentadbir/sistem_new.html', {'form': form})
+
+
+def DaftarPengguna(request):
+	return render(request, 'Pentadbir/daftar_pengguna.html')

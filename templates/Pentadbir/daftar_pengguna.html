@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">{% block title %}
+  <title>Blank SPPMaaaaaaaaaaa</title>{% endblock %}
+</head>
+<body>
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+                    <div class="col-12">
+                        <h4 class="m-b-0"></h4>
+                        <p class="text-muted m-t-0 font-12">Sila buat carian dengan menggunakan fungsi carian di bawah dengan memasukkan nombor kad pengenalan dan klik icon 'search'</code></p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-dark">
+                            <div class="card-header bg-dark">
+                                <h4 class="m-b-0 text-white">Carian Maklumat</h4></div>
+                            <div class="card-body">
+                                <h3 class="card-title">Sila Masukkan No Kad Pengenalan</h3>
+                                <form class="m-t-20">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-info" type="button"><i class="ti-pencil"></i></button>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-success" type="button"><i class="ti-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card border-info">
+                            <div class="card-header bg-info">
+                                <h4 class="m-b-0 text-white">Maklumat Kakitangan</h4></div>
+                            <div class="card-body">
+                                <h4 class="card-title">Paparan menunjukkan maklumat kakitangan secara terperinci</h4>
+                                <h5 class="card-subtitle">data yang dipaparkan hanya untuk rujukan sebelum ditambah peranan</h5>
+                                <form class="form p-t-20">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                                          </div>
+                                          <select class="custom-select" id="inputGroupSelect01">
+                                            <option selected="">Sila PIlih Peranan...</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                          </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nama</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon11"><i class="ti-user"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Nama Penuh" aria-label="Username" aria-describedby="basic-addon11">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">No Kad Pengenalan / No Tentera</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon22"><i class="ti-unlock"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Nombor KP" aria-label="Email" aria-describedby="basic-addon22">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Bahagian</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon33"><i class="ti-bag"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Bahagian" aria-label="Password" aria-describedby="basic-addon33">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Unit</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon4"><i class="ti-briefcase"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Unit Pembangunan dan Penyelenggaraan" aria-label="Password" aria-describedby="basic-addon4">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Kategori</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon4"><i class="ti-layers"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Awam / Tentera" aria-label="Password" aria-describedby="basic-addon4">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Gred / Pangkat</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon4"><i class="ti-stamp"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Pegawai Teknologi Maklumat" aria-label="Password" aria-describedby="basic-addon4">
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success m-r-10">Tambah Peranan</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+    
+    </div>
+    
+</div>
+
+  {% endblock %}
+</div>
+</body>
+</html>

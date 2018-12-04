@@ -27,9 +27,8 @@ class TblKomponen(models.Model):
 	Pemberat = models.IntegerField('Pemberat',blank=False,null=False, default=0)
 	SesiID = models.ForeignKey('TblSesi',on_delete=models.CASCADE)
 
-
 	def __str__(self):
-		return self.KodKomponen
+		return str(self.pk)
 
 
 class TblSubKomponen(models.Model):
@@ -39,6 +38,38 @@ class TblSubKomponen(models.Model):
 	KomponenID = models.ForeignKey('TblKomponen',on_delete=models.CASCADE)
 	SkalaID = models.ForeignKey('TblSkala',on_delete=models.CASCADE)
 
+	def __str__(self):
+		return str(self.pk)
+
+class TblSoalan(models.Model):
+	NoSoalan = models.CharField('NoSoalan',max_length=10,blank=False,null=False)
+	DeskripsiSoalan = models.CharField('DeskripsiSoalan',max_length=100,blank=False,null=False)
+	Status = models.IntegerField('Statussoalan',blank=False,null=False, default=1)
+	KomponenID = models.ForeignKey('TblKomponen',on_delete=models.CASCADE)
 
 	def __str__(self):
-		return self.KodKomponen
+		return str(self.pk)
+
+
+class TblJawapan(models.Model):
+	DeskripsiJawapan = models.CharField('DeskripsiJawapan',max_length=100,blank=False,null=False)
+	SoalanID = models.ForeignKey('TblSoalan',on_delete=models.CASCADE)
+	SkalaID = models.ForeignKey('TblSkala',on_delete=models.CASCADE)
+
+	def __str__(self):
+		return str(self.pk)
+
+class TblAuditee(models.Model):
+	NamaAuditee = models.CharField('NamaAuditee',max_length=100,blank=False,null=False)
+	IDStatus = models.IntegerField('IDStatusAuditee',blank=False,null=False, default=1)
+
+	def __str__(self):
+		return str(self.pk)
+
+class TblSubAuditee(models.Model):
+	NamaSubAuditee = models.CharField('NamaSubAuditee',max_length=100,blank=False,null=False)
+	AuditeeID = models.ForeignKey('TblAuditee',on_delete=models.CASCADE)
+	IDStatus = models.IntegerField('IDStatusSubAuditee',blank=False,null=False, default=1)
+
+	def __str__(self):
+		return str(self.pk)		
