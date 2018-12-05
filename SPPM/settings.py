@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django_python3_ldap',
     'Urusetia',
     'Pentadbir',
+    'Penilaian',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

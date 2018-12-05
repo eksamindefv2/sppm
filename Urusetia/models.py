@@ -61,7 +61,8 @@ class TblJawapan(models.Model):
 
 class TblAuditee(models.Model):
 	NamaAuditee = models.CharField('NamaAuditee',max_length=100,blank=False,null=False)
-	IDStatus = models.IntegerField('IDStatusAuditee',blank=False,null=False, default=1)
+	Status = models.IntegerField('StatusAuditee',blank=False,null=False, default=1)
+	SistemID = models.ForeignKey('Pentadbir.TblSistem',on_delete=models.CASCADE)
 
 	def __str__(self):
 		return str(self.pk)
@@ -69,7 +70,7 @@ class TblAuditee(models.Model):
 class TblSubAuditee(models.Model):
 	NamaSubAuditee = models.CharField('NamaSubAuditee',max_length=100,blank=False,null=False)
 	AuditeeID = models.ForeignKey('TblAuditee',on_delete=models.CASCADE)
-	IDStatus = models.IntegerField('IDStatusSubAuditee',blank=False,null=False, default=1)
+	Status = models.IntegerField('StatusSubAuditee',blank=False,null=False, default=1)
 
 	def __str__(self):
 		return str(self.pk)		
