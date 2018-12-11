@@ -12,8 +12,6 @@ class TblRefStatusPenilaian(models.Model):
 		return str(self.pk)
 
 class TblJadual(models.Model):
-	TarikhMula = models.DateField('TarikhMula',max_length=60,blank=False,null=False)
-	TarikhTamat = models.DateField('TarikhTamat',max_length=60,blank=False,null=False)
 	Status = models.IntegerField('Status',blank=False,null=False, default=1)
 	SesiID = models.ForeignKey('Urusetia.TblSesi',on_delete=models.CASCADE)
 	AuditeeID = models.ForeignKey('Urusetia.TblAuditee',on_delete=models.CASCADE)
@@ -73,6 +71,8 @@ class TblPenilaian(models.Model):
 	JadualID = models.ForeignKey('TblJadual',on_delete=models.CASCADE)
 	PenggunaID = models.ForeignKey('Pentadbir.UProfil',on_delete=models.CASCADE)
 	AttachmentID = models.ForeignKey('TblAttachment',on_delete=models.CASCADE)
+	TambahanID = models.ForeignKey('TblTambahan',on_delete=models.CASCADE)
+
 
 
 	def __str__(self):
@@ -82,7 +82,7 @@ class TblPenilaian(models.Model):
 class TblTambahan(models.Model):
 	Catatan = models.CharField('Catatan',max_length=50,blank=False,null=False)
 	AttachmentID = models.ForeignKey('TblAttachment',on_delete=models.CASCADE)
-	JadualID = models.ForeignKey('TblJadual',on_delete=models.CASCADE)
+	SesiID = models.ForeignKey('Urusetia.TblSesi',on_delete=models.CASCADE)
 
 
 	def __str__(self):

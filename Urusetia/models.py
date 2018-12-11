@@ -4,8 +4,10 @@ import Pentadbir
 # Create your models here.
 class TblSesi(models.Model):
 	Siri = models.CharField('Siri',max_length=50,blank=False,null=False)
-	TarikhMula = models.DateField('TarikhMula',max_length=60,blank=False,null=False)
-	TarikhTamat = models.DateField('TarikhTamat',max_length=60,blank=False,null=False)
+	TarikhMula = models.DateTimeField('TarikhMula',blank=True,null=True,auto_now_add=True)
+	TarikhTamat = models.DateTimeField('TarikhTamat',blank=True,null=True,auto_now_add=True)
+	TarikhMulaAudit = models.DateTimeField('TarikhMulaAudit',blank=True,null=True,auto_now_add=True)
+	TarikhTamatAudit = models.DateTimeField('TarikhTamatAudit',blank=True,null=True,auto_now_add=True)
 	Status = models.IntegerField('StatusSesi',blank=False,null=False, default=1)
 	SistemID = models.ForeignKey('Pentadbir.TblSistem',on_delete=models.CASCADE)
 
@@ -13,9 +15,12 @@ class TblSesi(models.Model):
 		return str(self.pk)
 
 
-class TblSkala(models.Model):
+class TblRefSkala(models.Model):
+	NamaSkala = models.CharField('NamaSkala',max_length=50,blank=False,null=False)
 	Deskripsi = models.CharField('Deskripsi',max_length=50,blank=False,null=False)
 	NilaiSkala = models.IntegerField('NilaiSkala',blank=False,null=False, default=1)
+	Status = models.IntegerField('Status',blank=False,null=False, default=1)
+	# SubKodKomponenID = models.ForeignKey('TblSubKomponen',on_delete=models.CASCADE)
 
 	def __str__(self):
 		return str(self.pk)
@@ -36,7 +41,7 @@ class TblSubKomponen(models.Model):
 	NamaSubKomponen = models.CharField('NamaSubKomponen',max_length=100,blank=False,null=False)
 	Pemberat = models.IntegerField('Pemberat',blank=False,null=False, default=0)
 	KomponenID = models.ForeignKey('TblKomponen',on_delete=models.CASCADE)
-	SkalaID = models.ForeignKey('TblSkala',on_delete=models.CASCADE)
+	RefSkalaID = models.ForeignKey('TblRefSkala',on_delete=models.CASCADE)
 
 	def __str__(self):
 		return str(self.pk)
@@ -52,9 +57,11 @@ class TblSoalan(models.Model):
 
 
 class TblJawapan(models.Model):
+	NoJawapan = models.CharField('NoJawapan',max_length=10,blank=False,null=False)
 	DeskripsiJawapan = models.CharField('DeskripsiJawapan',max_length=100,blank=False,null=False)
 	SoalanID = models.ForeignKey('TblSoalan',on_delete=models.CASCADE)
-	SkalaID = models.ForeignKey('TblSkala',on_delete=models.CASCADE)
+	Nilai = models.IntegerField('Nilai',blank=False,null=False, default=0)
+
 
 	def __str__(self):
 		return str(self.pk)

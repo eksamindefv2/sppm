@@ -22,3 +22,10 @@ class TblSistemForm(forms.ModelForm):
     class Meta:
         model = TblSistem
         fields = ('NamaSistem', 'Tahun', 'Status','PemilikSistem',)
+
+
+
+
+class DaftarPerananForm(forms.Form):
+    
+    carian = forms.CharField(label='Carian',max_length=100,required=True)        
