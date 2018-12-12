@@ -53,35 +53,67 @@ def Sistem_new(request):
 	return render(request, 'Pentadbir/sistem_new.html', {'form': form})
 
 
-def DaftarPengguna(request):
+# def DaftarPengguna(request):
 
-	# posts = []
-	# cnxn = pyodbc.connect("Driver={SQL Server Native Client 11.0};"
-	#                       "Server=10.101.1.100;"
-	#                       "Database=MCDB;"
-	#                       "uid=sa;pwd=cdbdev@2017")
-	# cursor = cnxn.cursor()
-	# # cursor.execute("SELECT ICNo,Nama,BUOrgChart,KategoriJawatan FROM TblPersonel where ICNo = '900131016875'")
-	# # cursor.execute("select ICNo,tp.nama, b.BUTitle as unit, c.BUTitle as bahagian, tp.KategoriJawatan from  MCDB.dbo.TblPersonel tp LEFT JOIN MCDB.dbo.TableBahagian b on REPLACE(REPLACE(tp.BUOrgChart,CHAR(13),''),CHAR(10),'')=REPLACE(REPLACE(b.BUOrgChart, Char(13),''),CHAR(10),'') LEFT JOIN MCDB.dbo.TableBahagian c on SUBSTRING(REPLACE(REPLACE(tp.BUOrgChart,CHAR(13),''),CHAR(10),''),1,7)+'0'= REPLACE(REPLACE(c.BUOrgChart,CHAR(13),''),CHAR(10),'') where tp.ICNo='890211025433'​")
-	# cursor.execute("select ICNo,tp.nama, b.BUTitle as unit, c.BUTitle as bahagian, tp.KategoriJawatan " \
-	# 	"from  MCDB.dbo.TblPersonel tp LEFT JOIN MCDB.dbo.TableBahagian b on REPLACE(REPLACE(tp.BUOrgChart,CHAR(13),'')," \
-	# 	"CHAR(10),'')=REPLACE(REPLACE(b.BUOrgChart, Char(13),''),CHAR(10),'') LEFT JOIN MCDB.dbo.TableBahagian c on SUBSTRING(REPLACE(REPLACE(tp.BUOrgChart,CHAR(13),''),CHAR(10),''),1,7)+'0'= REPLACE(REPLACE(c.BUOrgChart,CHAR(13),''),CHAR(10),'')" \
-	# 	" where tp.ICNo='890211025433'​")
-	# for obj in cursor.fetchall():
-	# 	posts.append({"IC": obj[0], "Nama": obj[1], "Unit":obj[2], "Bahagian":obj[3], "KategoriJawatan":obj[4]})
-	# # context = {'all_posts':cursor.fetchall()}
-	# print(posts)
-	# for row in cursor:
-	# 	print('row = %r' % (row,))
-	return render(request, 'Pentadbir/daftar_pengguna.html')
+# 	# posts = []
+# 	# cnxn = pyodbc.connect("Driver={SQL Server Native Client 11.0};"
+# 	#                       "Server=10.101.1.100;"
+# 	#                       "Database=MCDB;"
+# 	#                       "uid=sa;pwd=cdbdev@2017")
+# 	# cursor = cnxn.cursor()
+# 	# # cursor.execute("SELECT ICNo,Nama,BUOrgChart,KategoriJawatan FROM TblPersonel where ICNo = '900131016875'")
+# 	# # cursor.execute("select ICNo,tp.nama, b.BUTitle as unit, c.BUTitle as bahagian, tp.KategoriJawatan from  MCDB.dbo.TblPersonel tp LEFT JOIN MCDB.dbo.TableBahagian b on REPLACE(REPLACE(tp.BUOrgChart,CHAR(13),''),CHAR(10),'')=REPLACE(REPLACE(b.BUOrgChart, Char(13),''),CHAR(10),'') LEFT JOIN MCDB.dbo.TableBahagian c on SUBSTRING(REPLACE(REPLACE(tp.BUOrgChart,CHAR(13),''),CHAR(10),''),1,7)+'0'= REPLACE(REPLACE(c.BUOrgChart,CHAR(13),''),CHAR(10),'') where tp.ICNo='890211025433'​")
+# 	# cursor.execute("select ICNo,tp.nama, b.BUTitle as unit, c.BUTitle as bahagian, tp.KategoriJawatan " \
+# 	# 	"from  MCDB.dbo.TblPersonel tp LEFT JOIN MCDB.dbo.TableBahagian b on REPLACE(REPLACE(tp.BUOrgChart,CHAR(13),'')," \
+# 	# 	"CHAR(10),'')=REPLACE(REPLACE(b.BUOrgChart, Char(13),''),CHAR(10),'') LEFT JOIN MCDB.dbo.TableBahagian c on SUBSTRING(REPLACE(REPLACE(tp.BUOrgChart,CHAR(13),''),CHAR(10),''),1,7)+'0'= REPLACE(REPLACE(c.BUOrgChart,CHAR(13),''),CHAR(10),'')" \
+# 	# 	" where tp.ICNo='890211025433'​")
+# 	# for obj in cursor.fetchall():
+# 	# 	posts.append({"IC": obj[0], "Nama": obj[1], "Unit":obj[2], "Bahagian":obj[3], "KategoriJawatan":obj[4]})
+# 	# # context = {'all_posts':cursor.fetchall()}
+# 	# print(posts)
+# 	# for row in cursor:
+# 	# 	print('row = %r' % (row,))
+# 	return render(request, 'Pentadbir/daftar_pengguna.html')
 
 def Landing_page(request):
 	return render(request, 'Pentadbir/landing_page.html')
 
-def carian_pengguna(request):
+
+def DaftarPengguna(request):
 
     if request.method == "POST":
-    	pass
+    	form = DaftarPerananForm(request.POST)
+    	# print (form.cleaned_data['carian'])
+    	nokp = form['carian'].value()
+    	posts = []
+    	cnxn = pyodbc.connect("Driver={SQL Server Native Client 11.0};"
+		                      "Server=10.101.1.100;"
+		                      "Database=MCDB;"
+		                      "uid=sa;pwd=cdbdev@2017")
+    	cursor = cnxn.cursor()
+    	sql = "select ICNo,tp.nama, b.BUTitle as unit, c.BUTitle as bahagian, tp.KategoriJawatan from  MCDB.dbo.TblPersonel tp LEFT JOIN MCDB.dbo.TableBahagian b on REPLACE(REPLACE(tp.BUOrgChart,CHAR(13),''),CHAR(10),'')=REPLACE(REPLACE(b.BUOrgChart, Char(13),''),CHAR(10),'') LEFT JOIN MCDB.dbo.TableBahagian c on SUBSTRING(REPLACE(REPLACE(tp.BUOrgChart,CHAR(13),''),CHAR(10),''),1,7)+'0'= REPLACE(REPLACE(c.BUOrgChart,CHAR(13),''),CHAR(10),'') where tp.ICNo='"+str(nokp)+"'"
+    	cursor.execute(sql)
+    	# row_count = cursor.execute("select ICNo,tp.nama, b.BUTitle as unit, c.BUTitle as bahagian, tp.KategoriJawatan from  MCDB.dbo.TblPersonel tp LEFT JOIN MCDB.dbo.TableBahagian b on REPLACE(REPLACE(tp.BUOrgChart,CHAR(13),''),CHAR(10),'')=REPLACE(REPLACE(b.BUOrgChart, Char(13),''),CHAR(10),'') LEFT JOIN MCDB.dbo.TableBahagian c on SUBSTRING(REPLACE(REPLACE(tp.BUOrgChart,CHAR(13),''),CHAR(10),''),1,7)+'0'= REPLACE(REPLACE(c.BUOrgChart,CHAR(13),''),CHAR(10),'') where tp.ICNo='"+str(nokp)+"'")
+    	# cursor.execute("select * from [MCDB].[dbo].[TblPersonel] where ICNo='"+str(nokp)+"'")
+    	# row = cursor.fetchall()
+
+    	# print (row)
+    	# context = {"row":row}
+
+    	# print (nokp)
+    	for obj in cursor.fetchall():
+    		posts.append({"IC": obj[0], "Nama": obj[1], "Unit":obj[2], "Bahagian":obj[3], "KategoriJawatan":obj[4]})
+    	
+    	if not posts:
+    		messages.error(request, 'Tiada Maklumat!')	
+    		# print(posts)
+
+
+    		# for row in cursor:
+    		# 	print('row = %r' % (row,))
+    		# 	print('row = %r' % (row,))
     else:
     	form = DaftarPerananForm()
-    return render(request, 'penganjur/daftar_pengguna.html', {'form': form})
+    	posts = []
+    # return render(request, 'Pentadbir/daftar_pengguna.html',{'form':form,'row':row})
+    return render(request, 'Pentadbir/daftar_pengguna.html',{'form':form,'posts':posts})
