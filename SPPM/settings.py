@@ -93,6 +93,19 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'sql_server.pyodbc',
+#         'NAME': 'SPPM',
+#         'USER': 'sa',
+#         'PASSWORD': 'cdbdev@2017',
+#         'HOST': '10.101.1.100',
+#         'PORT': '1433',
+#         'OPTIONS': {
+#             'driver': 'ODBC Driver 13 for SQL Server',
+#         },
+#     },
+# }
 
 
 # Password validation

@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import TblSistem
-from .forms import TblSistemForm, DaftarPerananForm
+from .models import Sistem
+from .forms import SistemForm, DaftarPerananForm
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -32,7 +32,7 @@ def SenaraiSistem(request):
     # for row in cursor:
     # 	print('row = %r' % (row,))
 
-    a = TblSistem.objects.all().order_by('NamaSistem')
+    a = Sistem.objects.all().order_by('NamaSistem')
     print(a)
     # return render(request,'Pentadbir/sistem.html',{ 'sistem': a,'posts':posts})
     return render(request,'Pentadbir/sistem.html',{ 'sistem': a})
@@ -41,7 +41,7 @@ def SenaraiSistem(request):
 def Sistem_new(request):
 	if request.method == "POST":
 		request.POST = request.POST.copy()
-		form = TblSistemForm(request.POST)
+		form = SistemForm(request.POST)
 
 		if form.is_valid():
 			sistem = form.save(commit=False)
@@ -49,7 +49,7 @@ def Sistem_new(request):
 			messages.success(request, 'Sistem berjaya ditambah!')
 			return redirect(reverse_lazy('sistem_home'))
 	else:
-		form = TblSistemForm()
+		form = SistemForm()
 	return render(request, 'Pentadbir/sistem_new.html', {'form': form})
 
 

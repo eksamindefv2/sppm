@@ -1,12 +1,12 @@
 from django import forms
 # from multi_email_field.forms import MultiEmailField
-from .models import TblSistem
+from .models import Sistem
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 from datetime import datetime
 
-class TblSistemForm(forms.ModelForm):
+class SistemForm(forms.ModelForm):
     
     # mula = forms.DateTimeField(widget=DateTimeInput())
     # akhir = forms.DateTimeField(widget=DateTimeInput())
@@ -20,7 +20,7 @@ class TblSistemForm(forms.ModelForm):
     #     return data
 
     class Meta:
-        model = TblSistem
+        model = Sistem
         fields = ('NamaSistem', 'Tahun', 'Status','PemilikSistem',)
 
 

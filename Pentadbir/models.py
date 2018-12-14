@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 import Urusetia
 
 # Create your models here.
-class TblSistem(models.Model):
+class Sistem(models.Model):
 	NamaSistem = models.CharField('NamaSistem',max_length=200,blank=False,null=False)
 	Tahun = models.IntegerField('Tahun',null=False)
 	Status = models.IntegerField('Status',null=False,default=1)
@@ -20,7 +20,7 @@ class TblSistem(models.Model):
 # 	is_kjaudit = models.BooleanField(default = False)		
 # 	is_pemantau = models.BooleanField(default = False)
 
-class UProfil(models.Model):
+class Profil(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
 	nokpten = models.CharField(max_length = 12,unique = True)
 	Status = models.IntegerField('Status',null=False,default=1)
@@ -42,9 +42,9 @@ class RefPeranan(models.Model):
 		return str(self.pk)
 
 
-class UPeranan(models.Model):
-	Sistem = models.ForeignKey('TblSistem',on_delete=models.CASCADE)		
-	UProfil = models.ForeignKey('UProfil',on_delete=models.CASCADE)	
+class Peranan(models.Model):
+	Sistem = models.ForeignKey('Sistem',on_delete=models.CASCADE)		
+	UProfil = models.ForeignKey('Profil',on_delete=models.CASCADE)	
 	Peranan = models.ForeignKey('RefPeranan',on_delete=models.CASCADE)	
 
 	def __str__(self):

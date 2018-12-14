@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import TblSistem,UProfil,RefPeranan,UPeranan
+from .models import Sistem,Profil,RefPeranan,Peranan
 # Register your models here.
-admin.site.register(TblSistem)
-admin.site.register(UProfil)
+admin.site.register(Sistem)
+admin.site.register(Profil)
 admin.site.register(RefPeranan)
-admin.site.register(UPeranan)
+admin.site.register(Peranan)
