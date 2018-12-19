@@ -1,6 +1,12 @@
 from django.db import models
 import Pentadbir
 
+STATUS_CHOICES = [
+	(0, 'Tidak Aktif'),
+	(1, 'Aktif'),
+]
+
+
 # Create your models here.
 class Sesi(models.Model):
 	Siri = models.CharField('Siri',max_length=50,blank=False,null=False)
@@ -66,9 +72,11 @@ class Jawapan(models.Model):
 	def __str__(self):
 		return str(self.pk)
 
+
 class Auditee(models.Model):
 	NamaAuditee = models.CharField('NamaAuditee',max_length=100,blank=False,null=False)
-	Status = models.IntegerField('StatusAuditee',blank=False,null=False, default=1)
+	# Status = models.IntegerField('StatusAuditee',blank=False,null=False, default=1)
+	Status = models.IntegerField(choices=STATUS_CHOICES, default=1)
 	SistemID = models.ForeignKey('Pentadbir.Sistem',on_delete=models.CASCADE)
 
 	def __str__(self):

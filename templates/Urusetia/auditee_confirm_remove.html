@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Hapus Auditee</h4>
+								<form method="post" class="form-horizontal">
+                                    {% csrf_token %}
+                                    {% if auditee %}
+                                    Anda pasti untuk menghapus maklumat : {{ auditee.NamaAuditee }} ?
+                                      <br><br/>
+                                      <button type="submit" name="submit_yes" value="Yes" class="btn btn-primary">Yes</button>
+                                    {% else %}
+                                      <p>Harap maaf maklumat tidak wujud.</p>
+                                      <br>
+                                    {% endif %}
+                                      <a href="{% url 'auditee_home' %}" class="btn btn-primary">No</a>
+                                  </form>
+							</div>
+						</div>
+					</div>
+	</div>
+</div>
+
+{% endblock %}

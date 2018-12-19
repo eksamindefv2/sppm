@@ -11,7 +11,7 @@ class Sistem(models.Model):
 	PemilikSistem = models.CharField('PemilikSistem',max_length=200,null=False)
 
 	def __str__(self):
-		return str(self.pk)
+		return self.NamaSistem
 
 # class User(AbstractUser):
 # 	is_pentadbir = models.BooleanField(default = False)		
