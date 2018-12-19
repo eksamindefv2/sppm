@@ -50,7 +50,7 @@ def Sistem_new(request):
 			return redirect(reverse_lazy('sistem_home'))
 	else:
 		form = SistemForm()
-	return render(request, 'Pentadbir/sistem_new.html', {'form': form})
+	return render(request, 'Pentadbir/../templates/Urusetia/sistem_new.html', {'form': form})
 
 
 # def DaftarPengguna(request):

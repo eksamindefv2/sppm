@@ -1,18 +1,26 @@
 from django.db import models
 import Pentadbir
 
+STATUS_CHOICES = [
+		(0, 'TIDAK AKTIF'),
+		(1, 'AKTIF'),
+	]
 # Create your models here.
 class Sesi(models.Model):
+
 	Siri = models.CharField('Siri',max_length=50,blank=False,null=False)
-	TarikhMula = models.DateTimeField('TarikhMula',blank=True,null=True,auto_now_add=True)
-	TarikhTamat = models.DateTimeField('TarikhTamat',blank=True,null=True,auto_now_add=True)
-	TarikhMulaAudit = models.DateTimeField('TarikhMulaAudit',blank=True,null=True,auto_now_add=True)
-	TarikhTamatAudit = models.DateTimeField('TarikhTamatAudit',blank=True,null=True,auto_now_add=True)
-	Status = models.IntegerField('StatusSesi',blank=False,null=False, default=1)
+	TarikhMula = models.DateTimeField('TarikhMula', blank=True)
+	TarikhTamat = models.DateTimeField('TarikhTamat', blank=True)
+	TarikhMulaAudit = models.DateTimeField('TarikhMulaAudit', blank=True)
+	TarikhTamatAudit = models.DateTimeField('TarikhTamatAudit', blank=True)
+	# TarikhMula = models.DateTimeField('TarikhMula',blank=True,null=True,auto_now_add=True)
+	# TarikhTamat = models.DateTimeField('TarikhTamat',blank=True,null=True,auto_now_add=True)
+	# TarikhMulaAudit = models.DateTimeField('TarikhMulaAudit',blank=True,null=True,auto_now_add=True)
+	# TarikhTamatAudit = models.DateTimeField('TarikhTamatAudit',blank=True,null=True,auto_now_add=True)
+	#Status = models.IntegerField('StatusSesi',blank=False,null=False, default=1)
+	Status = models.IntegerField('StatusSesi',choices=STATUS_CHOICES, default=0)
 	SistemID = models.ForeignKey('Pentadbir.Sistem',on_delete=models.CASCADE)
 
-	def __str__(self):
-		return str(self.pk)
 
 
 class RefSkala(models.Model):

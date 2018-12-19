@@ -13,11 +13,11 @@
 								<form id="frm-example" method="post" enctype='multipart/form-data' class="m-t-30">
 								  {% csrf_token %}
 								  <!-- <legend>Tambah Sistem</legend> -->
-								  {{ form|crispy }}
+								  {{ form }}
 								  <hr>
 								  <p class="text-center">
 								    <button type="submit" id="submit1" class="btn btn-primary">Submit</button>
-								    <a href="{% url 'sistem_home' %}" class="btn btn-primary" >Cancel</a>
+								    <a href="{% url 'sesi_home' %}" class="btn btn-primary" >Cancel</a>
 								  </p>   
 								</form>
 							</div>

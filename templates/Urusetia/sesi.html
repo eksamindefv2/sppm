@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Pengurusan Sesi</h4>
+                                <h6 class="card-subtitle">Paparan menunjukkan senarai sesi yang telah didaftarkan. Jika terdapat sebarang penambahan, sila klik butang <b>'Tambah Sesi'</b></h6>
+                                <div class="m-t-40">
+                                        <div class="d-flex">
+                                            <div class="mr-auto">
+                                                <div class="form-group">
+                                                    <a href="{% url 'sesi_new' %}" class="btn btn-primary" >Tambah Sesi</a></div>
+                                            </div>
+                                            <div class="ml-auto">
+                                                <div class="form-group">
+                                                    <input id="demo-input-search2" type="text" placeholder="Carian" autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="table-responsive">
+                                    <table id="demo-foo-addrow2" class="table table-bordered table-hover toggle-circle" data-page-size="7">
+                                        <thead>
+                                            <tr>
+                                                <th>Siri</th>
+                                                <th>Tarikh Mula</th>
+                                                <th>Tarikh Tamat</th>
+                                                <th>Status</th>
+                                                <th>Tindakan</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for a in sesi %}
+                                              <tr>
+                                                  <td>{{ a.Siri }}</td>
+                                                  <td>{{ a.TarikhMula | date:"d-m-Y" }}</td>
+                                                  <td>{{ a.TarikhTamat | date:"d-m-Y" }}</td>
+                                                  <td>{{ a.get_Status_display }}</td>
+                                                  <td><a href="{% url 'sesi_edit' a.pk %}"><button class="btn btn-primary">Edit</button>
+		</a></td>
+                                              </tr>
+                                              {% endfor %}
+                                        </tbody> 
+                                        <tfoot>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div class="text-right">
+                                                    <ul class="pagination">
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>     
+                                            
+                                        
+                                    </table>
+
+                                    {% for i in posts %}
+
+                                        {{i.IC}}
+                                        {{i.Nama}}
+
+                                    {% endfor %}    
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+  {% endblock %}
