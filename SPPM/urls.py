@@ -23,7 +23,9 @@ urlpatterns = [
     url('urusetia/', include('Urusetia.urls')),
     url('pentadbir/', include('Pentadbir.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    url(r'^login/$', auth_views.login, name='login'),
-    url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
+    url(r'^login/$', auth_views.LoginView.as_view(), name='login'),
+    url(r'^logout/$', auth_views.LogoutView.as_view(), {'template_name': 'logged_out.html'}, name='logout'),
+    # url(r'^login/$', auth_views.LoginView, name='login'),
+    # url(r'^logout/$', auth_views.LogoutView, {'template_name': 'logged_out.html'}, name='logout'),
 
 ]

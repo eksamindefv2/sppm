@@ -26,6 +26,6 @@ class SistemForm(forms.ModelForm):
 
 
 
-class DaftarPerananForm(forms.Form):
-    
-    carian = forms.CharField(label='Carian',max_length=100,required=True)        
+# class DaftarPerananForm(forms.Form):
+#
+#     carian = forms.CharField(label='Carian',max_length=100,required=True)
