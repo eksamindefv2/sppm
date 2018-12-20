@@ -13,13 +13,6 @@ class Sistem(models.Model):
 	def __str__(self):
 		return str(self.pk)
 
-# class User(AbstractUser):
-# 	is_pentadbir = models.BooleanField(default = False)		
-# 	is_urusetia = models.BooleanField(default = False)		
-# 	is_juruaudit = models.BooleanField(default = False)		
-# 	is_kjaudit = models.BooleanField(default = False)		
-# 	is_pemantau = models.BooleanField(default = False)
-
 class Profil(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
 	nokpten = models.CharField(max_length = 12,unique = True)
@@ -27,11 +20,6 @@ class Profil(models.Model):
 
 	def __str__(self):
 		return str(self.pk)
-
-# class Pengguna(models.Model):
-# 	user = models.OneToOneField(User, on_delete = models.CASCADE)
-# 	nokpten = models.CharField(max_length = 12,unique = True)
-	# sistem = models.ManyToManyField(TblSistem)
 
 class RefPeranan(models.Model):
 	Peranan = models.CharField('Peranan',max_length=100,null=False)
