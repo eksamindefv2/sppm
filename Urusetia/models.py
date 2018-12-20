@@ -19,7 +19,7 @@ class Sesi(models.Model):
 	# TarikhTamatAudit = models.DateTimeField('TarikhTamatAudit',blank=True,null=True,auto_now_add=True)
 	#Status = models.IntegerField('StatusSesi',blank=False,null=False, default=1)
 	Status = models.IntegerField('StatusSesi',choices=STATUS_CHOICES, default=0)
-	SistemID = models.ForeignKey('Pentadbir.Sistem',on_delete=models.CASCADE)
+	SistemID = models.ForeignKey('Pentadbir.Sistem',on_delete=models.CASCADE,default=1)
 
 
 

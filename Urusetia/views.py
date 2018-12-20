@@ -38,6 +38,7 @@ def SenaraiSesi(request):
 
 def TambahSesi(request):
     if request.method == "POST":
+        request.POST = request.POST.copy()
         form = SesiForm(request.POST)
 
         if form.is_valid():
