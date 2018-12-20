@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'django_python3_ldap.auth.LDAPBackend',
+    # 'django_python3_ldap.auth.LDAPBackend',
 )
 
 # Quick-start development settings - unsuitable for production

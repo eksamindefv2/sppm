@@ -37,6 +37,7 @@ class RefPeranan(models.Model):
 	Peranan = models.CharField('Peranan',max_length=100,null=False)
 	KodPeranan = models.IntegerField('KodPeranan',null=False,default=1)
 	Keterangan = models.CharField('Keterangan',max_length=200,null=False)
+	Status = models.IntegerField('Status', null=False, default=1) #reen tambah
 
 	def __str__(self):
 		return str(self.pk)
