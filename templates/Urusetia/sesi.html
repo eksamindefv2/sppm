@@ -25,6 +25,7 @@
                                     <table id="demo-foo-addrow2" class="table table-bordered table-hover toggle-circle" data-page-size="7">
                                         <thead>
                                             <tr>
+                                                <th>Bil.</th>
                                                 <th>Siri</th>
                                                 <th>Tarikh Mula</th>
                                                 <th>Tarikh Tamat</th>
@@ -36,11 +37,12 @@
                                         <tbody>
                                             {% for a in sesi %}
                                               <tr>
+                                                  <td>{{ forloop.counter }}</td>
                                                   <td>{{ a.Siri }}</td>
                                                   <td>{{ a.TarikhMula | date:"d-m-Y" }}</td>
                                                   <td>{{ a.TarikhTamat | date:"d-m-Y" }}</td>
                                                   <td>{{ a.get_Status_display }}</td>
-                                                  <td><a href="{% url 'sesi_edit' a.pk %}"><button class="btn btn-primary">Edit</button>
+                                                  <td><a href="{% url 'sesi_edit' a.pk %}"><button class="btn btn-primary">Edit</button></a></td>
 		</a></td>
                                               </tr>
                                               {% endfor %}

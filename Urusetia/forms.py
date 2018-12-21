@@ -31,6 +31,7 @@ class SesiForm(forms.ModelForm):
     class Meta:
         model = Sesi
         fields = ('Siri', 'TarikhMula', 'TarikhTamat', 'TarikhMulaAudit','TarikhTamatAudit', 'Status',)
+        # fields ="__all__"
         # fields = ('Siri', 'Status', 'SistemID',)
         widgets = {
             'TarikhMula': DateInput(),
