@@ -156,13 +156,12 @@
                                         <tbody>
                                         {% for c in senaraiPerananpengguna %}
                                                 <tr>
-                                                    <td>{{ c.UProfil.user.first_name }}</td>
-                                                    <td>{{ c.UProfil.nokpten }}</td>
+                                                    <td>{{ c.Nama }}</td>
+                                                    <td>{{ c.nokpten }}</td>
                                                     <td>{{ c.Peranan.Peranan }}</td>
                                                     <td>{{ c.Sistem.NamaSistem }}</td>
                                                     <td align="center">
-                                                        <a type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></a>
-                                                        <a type="button" class="btn btn-sm btn-icon btn-pure btn-outline pencil-row-btn" data-toggle="tooltip" data-original-title="Kemaskini"><i class="ti-pencil" aria-hidden="true"></i></a>
+                                                        <a href="{% url 'hapus_pengguna' c.pk%}" type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Padam"><i class="ti-close" aria-hidden="true"></i></a>
                                                     </td>
 
                                                 </tr>

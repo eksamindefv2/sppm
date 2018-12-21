@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'Urusetia',
     'Pentadbir',
     'Penilaian',
+    'django_extensions',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -126,9 +126,15 @@ def DaftarPengguna(request):
             if not posts:
                 messages.error(request, 'Tiada Maklumat!')
         else:
-            icno = request.POST.get('icno',None)
+            ficno = request.POST.get('icno',None)
             fPeranan = request.POST.get('peranan',None)
-            print(icno,fPeranan)
+            fsistem = request.POST.get('sistem',None)
+            print(ficno,fPeranan,fsistem)
+
+            user = Peranan(Sistem=Sistem.objects.get(pk=fsistem), nokpten=ficno, Peranan=RefPeranan.objects.get(pk=fsistem))
+            user.save()
+
+
 
             # for row in cursor:
             #   print('row = %r' % (row,))
@@ -143,5 +149,9 @@ def DaftarPengguna(request):
     # return render(request, 'Pentadbir/daftar_pengguna.html',{'form':form,'row':row})
     return render(request, 'Pentadbir/daftar_pengguna.html', {'posts': posts, 'perananpengguna':perananpengguna,'senaraiPerananpengguna':senaraiPerananpengguna,'sistem':sistem})
 
-def TambahPeranan(request):
-    pass
+def HapusPengguna(request, pk):
+    peranan = get_object_or_404(Peranan,pk=pk)
+    # namaperanan = peranan.Peranan
+    peranan.delete()
+
+    return redirect(reverse_lazy('daftar_pengguna'))

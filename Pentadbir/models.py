@@ -43,9 +43,10 @@ class RefPeranan(models.Model):
 
 
 class Peranan(models.Model):
-	Sistem = models.ForeignKey('Sistem',on_delete=models.CASCADE)		
-	UProfil = models.ForeignKey('Profil',on_delete=models.CASCADE)
-	nokpten = models.CharField(max_length=12)
+	Sistem = models.ForeignKey('Sistem',on_delete=models.CASCADE)
+	# UProfil = models.ForeignKey('Profil',on_delete=models.CASCADE,null=True)
+	nokpten = models.CharField(max_length=12,null=True)
+	Nama = models.CharField(max_length=100,null=True)
 	Peranan = models.ForeignKey('RefPeranan',on_delete=models.CASCADE)
 
 	def __str__(self):
