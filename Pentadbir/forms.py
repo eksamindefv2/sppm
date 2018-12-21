@@ -1,6 +1,7 @@
 from django import forms
 # from multi_email_field.forms import MultiEmailField
 from .models import Sistem, RefPeranan
+from Penilaian.models import RefStatusPenilaian
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions, InlineRadios
@@ -40,4 +41,23 @@ class RefPerananForm(forms.ModelForm):
 
 class DaftarPerananForm(forms.Form):
     
-    carian = forms.CharField(label='Carian',max_length=100,required=True)        
+    carian = forms.CharField(label='Carian',max_length=100,required=True)
+
+
+# reen tambah----------------------------------------------------------------------------------------------------------
+class RefStatusNilaiForm(forms.ModelForm):
+    # radio button field
+    Status = forms.ChoiceField(
+        choices=(
+            ('1', 'Aktif'), ('0', 'Tidak Aktif')),
+        widget=forms.RadioSelect,
+        initial='2',
+    )
+
+    class Meta:
+        model = RefStatusPenilaian
+        fields = ('StatusPenilaian', 'Keterangan', 'Status',)
+
+
+class DaftarStatusNilaiForm(forms.Form):
+    carian = forms.CharField(label='Carian', max_length=100, required=True)

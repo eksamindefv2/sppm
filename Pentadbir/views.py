@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Sistem, RefPeranan
-from .forms import SistemForm, DaftarPerananForm, RefPerananForm
+from Penilaian.models import RefStatusPenilaian
+from .forms import SistemForm, DaftarPerananForm, RefPerananForm, RefStatusNilaiForm
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -77,6 +78,55 @@ def Peranan_delete(request,pk):
 
     # return render(request, 'Pentadbir/edit_peranan.html', {'form': form})
     return render(request, 'Pentadbir/peranan_confirm_delete.html', {'refperanan': refperanan, 'pk': pk})
+
+#reen tambah-----------------------------------------------------------------------------------------------------------
+
+def SenaraiStatusNilai(request):
+    a = RefStatusPenilaian.objects.all().order_by('StatusPenilaian')
+    return render(request, 'Pentadbir/refstatusnilai.html', {'StatusPenilaian': a})
+
+def StatusNilai_new(request):
+    if request.method == "POST":
+        request.POST = request.POST.copy()
+        form = RefStatusNilaiForm(request.POST)
+
+        if form.is_valid():
+            statusnilai = form.save(commit=False)
+            statusnilai.save()
+            messages.success(request, 'Status Penilaian berjaya ditambah!')
+            return redirect(reverse_lazy('statusnilai_home'))
+    else:
+        form = RefStatusNilaiForm()
+    return render(request, 'Pentadbir/daftar_statusnilai.html', {'form': form})
+
+def StatusNilai_edit(request,pk):
+    refstatusnilai = get_object_or_404(RefStatusPenilaian, pk=pk)
+    if request.method == "POST":
+        form = RefStatusNilaiForm(request.POST, instance=refstatusnilai)
+
+        if form.is_valid():
+            refstatusnilai = form.save(commit=False)
+            refstatusnilai.save()
+            messages.success(request, str(refstatusnilai.StatusPenilaian) + " telah berjaya dikemaskini! ")
+            return redirect(reverse_lazy('statusnilai_home'))
+
+    else:
+        form = RefStatusNilaiForm(instance=refstatusnilai)
+    return render(request, 'Pentadbir/edit_statusnilai.html', {'form': form})
+
+def StatusNilai_delete(request,pk):
+
+    refstatusnilai = get_object_or_404(RefStatusPenilaian, pk=pk)
+    if request.method == "POST":
+        if request.POST.get("submit_yes", ""):
+            per = refstatusnilai.StatusPenilaian
+            refstatusnilai.delete()
+            messages.success(request, "Peranan " + str(per) + " telah berjaya dihapuskan! ")
+            return redirect(reverse_lazy('statusnilai_home'))
+
+    # return render(request, 'Pentadbir/edit_peranan.html', {'form': form})
+    return render(request, 'Pentadbir/statusnilai_confirm_delete.html', {'refstatusnilai': refstatusnilai, 'pk': pk})
+
 # def DaftarPengguna(request):
 
 #   # posts = []

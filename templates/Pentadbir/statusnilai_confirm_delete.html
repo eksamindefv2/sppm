@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% extends 'base.html' %}
+
+
+{% block content %}
+
+     <div class="col-12">
+         <div class="card">
+             <div class="card-body">
+                 <h4 class="card-title">Hapus Status Penilaian</h4>
+                  <div>
+                      <form method="post" class="form-horizontal">
+                        {% csrf_token %}
+                        {% if refstatusnilai %}
+                          <p>Adakah anda pasti untuk menghapuskan statusnilai : {{ refstatusnilai.statusnilai }} ?</p>
+                          <p>Amaran ! Rekod status penilaian ini akan dihapuskan dan tidak boleh dikembalikan semula.</p>
+                          <br>
+                          <button type="submit" name="submit_yes" value="Yes" class="btn btn-primary">Yes</button>
+                        {% else %}
+                          <p>Maaf! Tiada maklumat berkenaan maklumat status penilaian ini. Berkemungkinan status penilaian
+                              ini telah dihapuskan atau belum dicipta lagi</p>
+                          <br>
+                        {% endif %}
+                          <a href="{% url 'statusnilai_home' %}" class="btn btn-primary">No</a>
+                      </form>
+                    </div>
+             </div>
+         </div>
+     </div>
+
+
+{% endblock %}</title>
+</head>
+<body>
+
+</body>
+</html>

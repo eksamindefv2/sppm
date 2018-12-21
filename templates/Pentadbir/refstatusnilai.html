@@ -1,0 +1,84 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Senarai Status Penilaian</h4>
+                                <h6 class="card-subtitle">Paparan menunjukkan senarai status penilaian yang telah didaftarkan. Jika terdapat sebarang penambahan, sila klik butang <b>'Tambah Status Penilaian'</b></h6>
+                                <div class="m-t-40">
+                                        <div class="d-flex">
+                                            <div class="mr-auto">
+                                                <div class="form-group">
+                                                    <a href="{% url 'statusnilai_new' %}" class="btn btn-primary" >Tambah Status Penilaian</a></div>
+                                            </div>
+                                            <div class="ml-auto">
+                                                <div class="form-group">
+                                                    <input id="demo-input-search2" type="text" placeholder="Carian" autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="table-responsive">
+                                    <table id="demo-foo-addrow2" class="table table-bordered table-hover toggle-circle" data-page-size="7">
+                                        <thead>
+                                            <tr>
+                                                  <th>Status Penilaian</th>
+                                                  <th>Keterangan</th>
+                                                  <th>Status</th>
+                                                  <th>Tindakan</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for a in StatusPenilaian %}
+                                              <tr>
+                                               <td>{{ a.StatusPenilaian }}</td>
+                                               <td>{{ a.Keterangan }}</td>
+                                               <td>
+                                                {% if a.Status == 1 %}
+                                                    <span class="label label-success">Aktif</span>
+                                                {% else %}
+                                                    <span class="label label-danger">Tidak Aktif</span>
+                                                {% endif %}
+                                                </a></td>
+
+                                               <td align="center">
+{#                                                <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button>#}
+                                                <a type="button" class="btn btn-sm btn-icon btn-pure btn-outline pencil-row-btn" data-toggle="tooltip" data-original-title="Kemaskini" href="{% url 'statusnilai_edit' a.pk %}" role="button"><i class="ti-pencil" aria-hidden="true" ></i></a>
+{#                                                <a type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Hapus" href="{% url 'peranan_delete' a.pk %}" role="button"><i class="ti-close" aria-hidden="true" ></i></a>#}
+                                               </td>
+                                              </tr>
+                                              {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div class="text-right">
+                                                    <ul class="pagination">
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+
+
+                                    </table>
+
+                                    {% for i in posts %}
+
+                                        {{i.IC}}
+                                        {{i.Nama}}
+
+                                    {% endfor %}
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+{% endblock %}

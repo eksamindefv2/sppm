@@ -5,7 +5,7 @@ import Pentadbir,Urusetia
 # Create your models here.
 class RefStatusPenilaian(models.Model):
 	StatusPenilaian = models.CharField('StatusPenilaian',max_length=50,blank=False,null=False)
-	Keterangan = models.CharField('Keterangan',max_length=50,blank=False,null=False)
+	Keterangan = models.CharField('Keterangan',max_length=200,blank=False,null=False)
 	Status = models.IntegerField('Status',blank=False,null=False, default=1)
 
 	def __str__(self):
