@@ -1,6 +1,6 @@
 from django import forms
 # from multi_email_field.forms import MultiEmailField
-from .models import Auditee
+from .models import Auditee, SubAuditee
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
@@ -32,3 +32,12 @@ class AuditeeForm(forms.ModelForm):
     class Meta:
         model = Auditee
         fields = ('NamaAuditee', 'Status', 'SistemID')
+
+
+class SubAuditeeForm(forms.ModelForm):
+
+    Status = forms.ChoiceField(choices=STATUS_CHOICES, required=True)
+
+    class Meta:
+        model = SubAuditee
+        fields = ('NamaSubAuditee','AuditeeID', 'Status')

@@ -28,7 +28,6 @@
                                                   <th>Bil</th>
                                                   <th>Nama Auditee</th>
                                                   <th>Bil Sub Auditee</th>
-                                                  <th>Pemantau</th>
                                                   <th>Status</th>
                                                   <th>Tindakan</th>
                                             </tr>
@@ -36,10 +35,11 @@
                                         <tbody>
                                             {% for a in auditee %}
                                               <tr>
-                                               <td></td>
-                                               <td>{{ a.NamaAuditee }}</td>
-                                               <td></td>
-                                               <td></td>
+                                               <td>{{ forloop.counter }}</td>
+                                                  <td>
+                                                      <a href="{% url 'auditee_detail' a.pk %}">{{ a.NamaAuditee }}</a>
+                                                  </td>
+                                               <td>{{a.SubAuditee_set.all|length}}</td>
                                                <td>
                                                 {% if a.Status == 1 %}
                                                     <span class="label label-success">Aktif</span>
@@ -48,7 +48,6 @@
                                                 {% endif %}
                                                 </a></td>
                                                <td align="center">
-                                                    <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline pencil-row-btn" data-toggle="tooltip" data-original-title="Tambah Pemantau"><i class="ti-plus" aria-hidden="true"></i></button>
                                                     <a href="{% url 'auditee_edit' a.pk %}"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline pencil-row-btn" data-toggle="tooltip" data-original-title="Kemaskini"><i class="ti-pencil" aria-hidden="true"></i></button></a>
                                                     <a href="{% url 'auditee_remove' a.pk %}"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Hapus"><i class="ti-close" aria-hidden="true"></i></button></a>
                                                 </td>
