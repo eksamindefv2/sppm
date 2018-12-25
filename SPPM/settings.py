@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'django_python3_ldap',
-    'bootstrap_modal_forms',
     'widget_tweaks',
     'Urusetia',
     'Pentadbir',

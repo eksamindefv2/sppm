@@ -8,20 +8,20 @@ import pyodbc
 from django.http import JsonResponse # Modal form
 from django.template.loader import render_to_string # Modal form
 
-################ sibtc modal form #####################################################
+################ Django CRUD modal form #####################################################
+
+# Senarai semua sistem
+def sistem_list(request):
+    a = Sistem.objects.all().order_by('NamaSistem')
+    return render(request, 'Pentadbir/sistem_list.html', {'sistem': a})
 
 # Simpan Form Generic
-def save_sistem_form(request, form, template_name, msg):
+def save_sistem_form(request, form, template_name):
     data = dict()
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            sistem = Sistem.objects.all()
-            data['html_sistem_list'] = render_to_string('Pentadbir/partial_sistem_list.html', {
-                'sistem': sistem
-            })
-            data['html_msg'] = "<div class='alert alert-success alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>"+msg+"</div>"
         else:
             data['form_is_valid'] = False
     context = {'form': form}
@@ -33,10 +33,10 @@ def sistem_create(request):
     if request.method == 'POST':
         form = SistemForm(request.POST)
         msg = 'Sistem ' + request.POST.get('NamaSistem', None) + ' telah berjaya ditambah!'
+        messages.success(request, msg)
     else:
         form = SistemForm()
-        msg = None
-    return save_sistem_form(request, form, 'Pentadbir/partial_sistem_create.html',msg)
+    return save_sistem_form(request, form, 'Pentadbir/partial_sistem_create.html')
 
 # Update Sistem 
 def sistem_update(request, pk):
@@ -44,10 +44,10 @@ def sistem_update(request, pk):
     if request.method == 'POST':
         form = SistemForm(request.POST, instance=sistem)
         msg = 'Sistem ' + request.POST.get('NamaSistem', None)  +' telah berjaya dikemaskini!'
+        messages.success(request, msg)
     else:
         form = SistemForm(instance=sistem)
-        msg = None
-    return save_sistem_form(request, form, 'Pentadbir/partial_sistem_update.html',msg)
+    return save_sistem_form(request, form, 'Pentadbir/partial_sistem_update.html')
 
 # Delete sistem
 def sistem_delete(request, pk):
@@ -55,13 +55,9 @@ def sistem_delete(request, pk):
     data = dict()
     if request.method == 'POST':
         msg = 'Sistem ' + str(sistem.NamaSistem) + ' telah berjaya dihapuskan!'
+        messages.success(request, msg)
         sistem.delete()
         data['form_is_valid'] = True  # This is just to play along with the existing code
-        sistem = Sistem.objects.all()
-        data['html_sistem_list'] = render_to_string('Pentadbir/partial_sistem_list.html', {
-            'sistem': sistem
-        })
-        data['html_msg'] = "<div class='alert alert-danger alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>"+msg+"</div>"
     else:
         context = {'sistem': sistem}
         data['html_form'] = render_to_string('Pentadbir/partial_sistem_delete.html',
@@ -73,49 +69,28 @@ def sistem_delete(request, pk):
 ############################################################################################
 
 
-# Create your views here.
-def SenaraiSistem(request):
-    # List of records
-
-    # Query from MCDB#####################################################
- #    posts = []
- #    cnxn = pyodbc.connect("Driver={SQL Server Native Client 11.0};"
-        #                       "Server=10.101.1.100;"
-        #                       "Database=MCDB;"
-        #                       "uid=sa;pwd=cdbdev@2017")
- #    cursor = cnxn.cursor()
- #    cursor.execute('SELECT * FROM TblPersonel')
-
- #    for obj in cursor.fetchall():
- #      posts.append({"IC": obj[0], "Nama": obj[3]})
-        # # context = {'all_posts':cursor.fetchall()}
-
- #    print(posts)
-
-    # Query from MCDB######################################################
-
-    # for row in cursor:
-    #   print('row = %r' % (row,))
-
+################ Django CRUD ###############################################################
+# Senarai sistem 
+def sistemdj_list(request):
     a = Sistem.objects.all().order_by('NamaSistem')
-    print(a)
-    # return render(request,'Pentadbir/sistem.html',{ 'sistem': a,'posts':posts})
-    return render(request, 'Pentadbir/sistem.html', {'sistem': a})
+    return render(request, 'Pentadbir/sistemdj_list.html', {'sistem': a})
+
+############################################################################################
 
 
-def Sistem_new(request):
-    if request.method == "POST":
-        request.POST = request.POST.copy()
-        form = SistemForm(request.POST)
+# def Sistem_new(request):
+#     if request.method == "POST":
+#         request.POST = request.POST.copy()
+#         form = SistemForm(request.POST)
 
-        if form.is_valid():
-            sistem = form.save(commit=False)
-            sistem.save()
-            messages.success(request, 'Sistem berjaya ditambah!')
-            return redirect(reverse_lazy('sistem_home'))
-    else:
-        form = SistemForm()
-    return render(request, 'Pentadbir/sistem_new.html', {'form': form})
+#         if form.is_valid():
+#             sistem = form.save(commit=False)
+#             sistem.save()
+#             messages.success(request, 'Sistem berjaya ditambah!')
+#             return redirect(reverse_lazy('sistem_home'))
+#     else:
+#         form = SistemForm()
+#     return render(request, 'Pentadbir/sistem_new.html', {'form': form})
 
 def Landing_page(request):
     return render(request, 'Pentadbir/landing_page.html')
@@ -189,6 +164,4 @@ def TambahPeranan(request):
     pass
 
 
-def senaraisis(request):
-    a = Sistem.objects.all().order_by('NamaSistem')
-    return render(request, 'Pentadbir/senaraisis.html', {'sistem': a})
+

@@ -1189,8 +1189,12 @@
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{% static 'assets/libs/popper.js/dist/umd/popper.min.js' %}"></script>
     <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.min.js' %}"></script>
-    <!-- django bootstrap modal form -->
-    <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+    <!-- Datatables -->
+    <script src="{% static 'assets/extra-libs/DataTables/datatables.min.js' %}"></script>
+    <script src="{% static 'dist/js/pages/datatable/datatable-basic.init.js' %}"></script>
+    
+    <script src="{% static 'assets/libs/footable/dist/footable.all.min.js' %}"></script>
+    <script src="{% static 'dist/js/pages/tables/footable-init.js' %}"></script>
     {% block extrajs %}{% endblock %}
 
 
@@ -1207,12 +1211,7 @@
     <script src="{% static 'dist/js/sidebarmenu.js' %}"></script>
     <!--Custom JavaScript -->
     <script src="{% static 'dist/js/custom.min.js' %}"></script>
-    <!-- Datatables -->
-    <script src="{% static 'assets/extra-libs/DataTables/datatables.min.js' %}"></script>
-    <script src="{% static 'dist/js/pages/datatable/datatable-basic.init.js' %}"></script>
     
-    <script src="{% static 'assets/libs/footable/dist/footable.all.min.js' %}"></script>
-    <script src="{% static 'dist/js/pages/tables/footable-init.js' %}"></script>
     
 
 </body>
