@@ -654,17 +654,13 @@
                               {% for message in tags.list %}
                                 {% if forloop.first %}
                                   {% if 'error' in message.tags %}
-                                    <!-- <div class="alert alert-danger" role="alert"> -->
-                                    <div class="alert alert-danger alert-rounded"> <i class="ti-user"></i>
+                                    <div class='alert alert-danger alert-rounded alert-dismissible' role="alert"><button type='button' class='close' data-dismiss='alert'>&times;</button>
                                   {% else %}
-                                    <!-- <div class="alert alert-{{ message.level_tag }}" role="alert"> -->
-                                    <div class="alert alert-{{ message.level_tag }} alert-rounded" role="alert"><i class="ti-user"></i>
+                                    <div class='alert alert-{{ message.level_tag }} alert-rounded alert-dismissible' role="alert"><button type='button' class='close' data-dismiss='alert'>&times;</button>
                                   {% endif %}
-                                      
                                 {% endif %}
                                         {{ message }}
                               {% endfor %}
-                                    <!-- <button type="button" class="close btn pull-right"" data-dismiss="alert" aria-hidden="true">&times;</button> -->
                                   </div>
                             {% endfor %}
                           {% endif %}

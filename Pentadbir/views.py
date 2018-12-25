@@ -75,22 +75,47 @@ def sistemdj_list(request):
     a = Sistem.objects.all().order_by('NamaSistem')
     return render(request, 'Pentadbir/sistemdj_list.html', {'sistem': a})
 
+# Cipta sistem
+def sistemdj_create(request):
+    if request.method == "POST":
+        form = SistemForm(request.POST)
+        if form.is_valid():
+            sistem = form.save(commit=False)
+            sistem.save()
+            messages.success(request, 'Sistem ' + sistem.NamaSistem + ' berjaya ditambah!')
+            return redirect(reverse_lazy('sistemdj_list'))
+    else:
+        form = SistemForm()
+    return render(request, 'Pentadbir/sistemdj_create.html', {'form': form})
+
+# Update sistem
+def sistemdj_update(request,pk):
+    sistem = get_object_or_404(Sistem,pk=pk)
+    if request.method == "POST":
+        form = SistemForm(request.POST,instance=sistem)
+        if form.is_valid():
+            sistem = form.save(commit=False)
+            sistem.save()
+            messages.success(request, 'Sistem ' + sistem.NamaSistem + ' berjaya dikemaskini!')
+            return redirect(reverse_lazy('sistemdj_list'))
+    else:
+        form = SistemForm(instance=sistem)
+    return render(request, 'Pentadbir/sistemdj_update.html', {'form': form})
+
+# Hapus sistem
+def sistemdj_delete(request,pk):
+    sistem = get_object_or_404(Sistem,pk=pk)
+    if request.method == "POST":
+        if request.POST.get("submit_yes", ""):
+            messages.success(request, 'Sistem ' + sistem.NamaSistem + ' telah berjaya dihapuskan!')
+            sistem.delete()
+            return redirect(reverse_lazy('sistemdj_list'))
+    
+    return render(request,'Pentadbir/confirm_delete_sistemdj.html',{ 'sistem' : sistem  } )
+
+
 ############################################################################################
 
-
-# def Sistem_new(request):
-#     if request.method == "POST":
-#         request.POST = request.POST.copy()
-#         form = SistemForm(request.POST)
-
-#         if form.is_valid():
-#             sistem = form.save(commit=False)
-#             sistem.save()
-#             messages.success(request, 'Sistem berjaya ditambah!')
-#             return redirect(reverse_lazy('sistem_home'))
-#     else:
-#         form = SistemForm()
-#     return render(request, 'Pentadbir/sistem_new.html', {'form': form})
 
 def Landing_page(request):
     return render(request, 'Pentadbir/landing_page.html')
