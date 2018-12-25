@@ -647,7 +647,7 @@
                 <div class="row">
                     <div class="col-12">
                         {% block messages %}
-          
+                        <div id="msg">
                           {% if messages %}
                             {% regroup messages|dictsort:"tags" by tags as message_list  %}
                             {% for tags in message_list %}
@@ -668,7 +668,7 @@
                                   </div>
                             {% endfor %}
                           {% endif %}
-
+                        </div>
                         {% endblock %}
                         
                         {% block content %}
@@ -1189,6 +1189,11 @@
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{% static 'assets/libs/popper.js/dist/umd/popper.min.js' %}"></script>
     <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- django bootstrap modal form -->
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+    {% block extrajs %}{% endblock %}
+
+
     <!-- apps -->
     <script src="{% static 'dist/js/app.min.js' %}"></script>
     <script src="{% static 'dist/js/app.init.overlay.js' %}"></script>

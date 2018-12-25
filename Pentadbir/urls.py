@@ -11,4 +11,12 @@ urlpatterns = [
     path('landing_page',views.Landing_page,name='landing_page'),
     # url(r'^logout/$', auth_views.logout, name='logout'),
     # url(r'^about/$', views.AboutPageView.as_view(), name='about'),
+
+    #Test bootstrap form
+    path('sistemlist/',views.senaraisis,name='sistemlist'),
+    # path('create/', views.SisCreateView.as_view(), name='create_sis'),
+    path('sistem/create', views.sistem_create, name='sistem_create'),
+    path('sistem/<int:pk>/update/', views.sistem_update, name='sistem_update'),
+    path('sistem/<int:pk>/delete/', views.sistem_delete, name='sistem_delete'),
+
 ]

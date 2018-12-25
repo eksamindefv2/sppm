@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Senarai Sistem</h4>
+                                <h6 class="card-subtitle">Paparan menunjukkan senarai sistem yang telah didaftarkan. Jika terdapat sebarang penambahan, sila klik butang <b>'Tambah Sistem'</b></h6>
+                                <div class="m-t-40">
+                                        <div class="d-flex">
+                                            <div class="mr-auto">
+                                                <div class="form-group">
+                                                    <a href="{% url 'sistem_new' %}" class="btn btn-primary" >Tambah Aktiviti</a>
+                                                    <button type="button" class="btn btn-primary js-create-sistem" data-url="{% url 'sistem_create' %}">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                            Tambah Sistem
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="ml-auto">
+                                                <div class="form-group">
+                                                    <input id="demo-input-search2" type="text" placeholder="Carian" autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="table-responsive">
+                                    <table id="demo-foo-addrow2" class="table table-bordered table-hover toggle-circle" data-page-size="7">
+                                        <thead>
+                                            <tr>
+                                                  <th>Nama Sistem</th>
+                                                  <th>Tahun</th>
+                                                  <th>Status</th>
+                                                  <th>Pemilik Sistem</th>
+                                                  <th>Tindakan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% include 'Pentadbir/partial_sistem_list.html' %}
+                                        </tbody> 
+                                        <tfoot>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div class="text-right">
+                                                    <ul class="pagination">
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>     
+                                            
+                                        
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sistem Modal form -->
+                        <div class="modal fade" id="modal-sistem">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+  {% endblock %}
+
+  {% block extrajs %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+        //Load form ke dalam modal 
+        var loadForm = function () {
+            var btn = $(this);
+            $.ajax({
+              url: btn.attr("data-url"),
+              type: 'get',
+              dataType: 'json',
+              beforeSend: function () {
+                $("#modal-sistem").modal("show");
+              },
+              success: function (data) {
+                $("#modal-sistem .modal-content").html(data.html_form);
+              }
+            });
+        };
+
+        //Simpan form dalam modal
+        var saveForm = function () {
+            var form = $(this);
+            $.ajax({
+              url: form.attr("action"),
+              data: form.serialize(),
+              type: form.attr("method"),
+              dataType: 'json',
+              success: function (data) {
+                if (data.form_is_valid) {
+                  $("#demo-foo-addrow2 tbody").html(data.html_sistem_list);
+                  $("#modal-sistem").modal("hide");
+                  $("#msg").html(data.html_msg);
+                  // window.location.href = "{% url 'sistemlist' %}";
+                }
+                else {
+                  $("#modal-sistem .modal-content").html(data.html_form);
+                }
+              }
+            });
+            return false;
+        };
+
+
+      /* Binding */
+
+      // Create sistem
+      $(".js-create-sistem").click(loadForm);
+      $("#modal-sistem").on("submit", ".js-sistem-create-form", saveForm);
+
+      // Update sistem
+      $("#demo-foo-addrow2").on("click", ".js-update-sistem", loadForm);
+      $("#modal-sistem").on("submit", ".js-sistem-update-form", saveForm);
+
+      // Delete sistem
+        $("#demo-foo-addrow2").on("click", ".js-delete-sistem", loadForm);
+        $("#modal-sistem").on("submit", ".js-sistem-delete-form", saveForm);
+
+    });
+
+  </script>
+  {% endblock %}
