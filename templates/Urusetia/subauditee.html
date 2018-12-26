@@ -7,12 +7,12 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Senarai Auditee</h4>
-                                <h6 class="card-subtitle">Paparan menunjukkan senarai auditee yang telah didaftarkan. Jika terdapat sebarang penambahan, sila klik butang <b>'Tambah Auditee'</b></h6>
+                                <h6 class="card-subtitle">Paparan menunjukkan senarai sistem yang telah didaftarkan. Jika terdapat sebarang penambahan, sila klik butang <b>'Tambah Auditee'</b></h6>
                                 <div class="m-t-40">
                                         <div class="d-flex">
                                             <div class="mr-auto">
                                                 <div class="form-group">
-                                                    <a href="{% url 'auditee_new' %}" class="btn btn-primary" >Tambah Auditee</a></div>
+                                                    <a href="" class="btn btn-primary" >Tambah Sub Auditee</a></div>
                                             </div>
                                             <div class="ml-auto">
                                                 <div class="form-group">
@@ -26,20 +26,20 @@
                                         <thead>
                                             <tr>
                                                   <th>Bil</th>
+                                                  <th>Nama Sub Auditee</th>
                                                   <th>Nama Auditee</th>
-                                                  <th>Bil Sub Auditee</th>
                                                   <th>Status</th>
                                                   <th>Tindakan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for a in auditee %}
+                                            {% for a in subauditee %}
                                               <tr>
                                                <td>{{ forloop.counter }}</td>
                                                   <td>
-                                                      <a href="{% url 'auditee_detail' a.pk %}">{{ a.NamaAuditee }}</a>
+                                                      {{ a.NamaSubAuditee }}
                                                   </td>
-                                               <td>{{a.SubAuditee_set.all|length}}</td>
+                                               <td></td>
                                                <td>
                                                 {% if a.Status == 1 %}
                                                     <span class="label label-success">Aktif</span>
@@ -48,8 +48,8 @@
                                                 {% endif %}
                                                 </a></td>
                                                <td align="center">
-                                                    <a href="{% url 'auditee_edit' a.pk %}"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline pencil-row-btn" data-toggle="tooltip" data-original-title="Kemaskini"><i class="ti-pencil" aria-hidden="true"></i></button></a>
-                                                    <a href="{% url 'auditee_remove' a.pk %}"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Hapus"><i class="ti-close" aria-hidden="true"></i></button></a>
+                                                    <a href=""><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline pencil-row-btn" data-toggle="tooltip" data-original-title="Kemaskini"><i class="ti-pencil" aria-hidden="true"></i></button></a>
+                                                    <a href=""><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Hapus"><i class="ti-close" aria-hidden="true"></i></button></a>
                                                 </td>
                                               </tr>
                                               {% endfor %}

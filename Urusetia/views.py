@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.shortcuts import render
-from .models import Auditee
+from .forms import SubauditeeFormset2
+from .models import Auditee, SubAuditee
 from .forms import AuditeeForm
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 import pyodbc
+
+
 
 # Create your views here.
 
@@ -70,7 +73,7 @@ def auditee_remove(request,pk):
     if request.method == "POST":
         if request.POST.get("submit_yes", ""):
             auditee.delete()
-            messages.success(request, "Maklumat Auditee " + str(icnum) + " has been removed! ")
+            messages.success(request, "Maklumat Auditee has been removed! ")
             return redirect(reverse_lazy('auditee_home'))
 
     return render(request, 'Urusetia/auditee_confirm_remove.html', {'auditee': auditee, 'pk':pk})
@@ -80,7 +83,39 @@ def auditee_remove(request,pk):
 # VIEWS FOR SUBAUDITEE
 #################################################################################################
 
+def SenaraiSubAuditee(request):
+
+    a = SubAuditee.objects.all().order_by('NamaSubAuditee')
+    print(a)
+
+    #a.SubAuditee.AuditeeID
+
+    return render(request, 'Urusetia/subauditee.html', {'subauditee': a})
+
+
 class HomePageView(TemplateView):
     template_name = "index.html"
+
+
+def create_subauditee_normal(request):
+    template_name = 'Urusetia/subauditee_normal.html'
+    heading_message = 'Formset Demo'
+    if request.method == 'GET':
+        formset = SubauditeeFormset2(request.GET or None)
+    elif request.method == 'POST':
+        formset = SubauditeeFormset2(request.POST)
+        if formset.is_valid():
+            for form in formset:
+                # extract name from each form and save
+                NamaSubAuditee = form.cleaned_data.get('NamaSubAuditee')
+                # save book instance
+                if NamaSubAuditee:
+                    SubAuditee(NamaSubAuditee=NamaSubAuditee).save()
+            # once all books are saved, redirect to book list view
+            return redirect('subauditee_home')
+    return render(request, template_name, {
+        'formset': formset,
+        'heading': heading_message,
+    })
 
 

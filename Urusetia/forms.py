@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import formset_factory
 # from multi_email_field.forms import MultiEmailField
 from .models import Auditee, SubAuditee
 from crispy_forms.helper import FormHelper
@@ -8,6 +9,7 @@ from datetime import datetime
 from Pentadbir.models import Sistem
 
 
+
 STATUS_CHOICES = [
 	(0, 'Tidak Aktif'),
 	(1, 'Aktif'),
@@ -15,19 +17,7 @@ STATUS_CHOICES = [
 
 
 class AuditeeForm(forms.ModelForm):
-
     Status = forms.ChoiceField(choices=STATUS_CHOICES, required=True)
-
-    # mula = forms.DateTimeField(widget=DateTimeInput())
-    # akhir = forms.DateTimeField(widget=DateTimeInput())
-
-    # # Verify Masa mula mestilah lebih awal daripada masa akhir
-    # def clean(self):
-    #     data = self.cleaned_data
-    #     # print(str(self.cleaned_data['mula'])[:-9],self.cleaned_data['akhir'])
-    #     if datetime.strptime(str(self.cleaned_data['mula'])[:-9],'%Y-%m-%d %H:%M') >= datetime.strptime(str(self.cleaned_data['akhir'])[:-9],'%Y-%m-%d %H:%M'):
-    #         raise forms.ValidationError("Masa tarikh / masa mula mestilah lebih awal daripada tarikh / masa akhir !")
-    #     return data
 
     class Meta:
         model = Auditee
@@ -40,4 +30,20 @@ class SubAuditeeForm(forms.ModelForm):
 
     class Meta:
         model = SubAuditee
-        fields = ('NamaSubAuditee','AuditeeID', 'Status')
+        fields = ('NamaSubAuditee', 'AuditeeID', 'Status')
+
+
+class SubauditeeForm2(forms.Form):
+    NamaSubAuditee = forms.CharField(
+        label='Sub Auditee',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Sila isi sub auditee'
+        })
+    )
+
+
+SubauditeeFormset2 = formset_factory(SubauditeeForm2)
+# SubauditeeFormset = formset_factory(SubauditeeForm2, extra=1)
+
+

@@ -1,33 +1,57 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
+<div class="container-fluid">
+    <div class="row">
+                    <div class="col-lg-6 col-sm12 col-xs-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Maklumat Auditee</h4>
+                                <h6 class="card-subtitle">Sila isikan ruangan di bawah dengan memasukkan maklumat yang betul</h6>
 
+								<div id="div_id_NamaAuditee" class="form-group"> <label for="id_NamaAuditee" class="col-form-label  requiredField">
+                                    NamaAuditee<span class="asteriskField">*</span> </label> <div class=""> {{a.NamaAuditee}}</div>
+                                </div>
+                                <div id="div_id_NamaAuditee" class="form-group"> <label for="id_NamaAuditee" class="col-form-label  requiredField">
+                                    Status<span class="asteriskField">*</span> </label> <div class="">
+                                        {% if a.Status == 1 %}
+                                            Aktif
+                                        {% else %}
+                                            Tidak Aktif
+                                        {% endif %}
+                                </div></div>
+							</div>
+						</div>
+					</div>
+			<div class="col-lg-6 col-sm12 col-xs-12">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Sub Auditee</span></a> </li>
+					<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Pemantau</span></a> </li>
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content tabcontent-border">
+					<div class="tab-pane active" id="home" role="tabpanel">
+						<div class="p-20">
 
-
-
-<!--<div class="col-lg-6 col-sm12 col-xs-12">-->
-    <div class="card">
-    <div class="card-body">
-        <h4 class="card-title">Maklumat Auditee</h4>
-		<hr>
-            <div id="div_id_NamaAuditee" class="form-group"> <label for="id_NamaAuditee" class="col-form-label  requiredField">
-                NamaAuditee<span class="asteriskField">*</span> </label> <div class=""> {{a.NamaAuditee}}
-            </div>
-                <div id="div_id_NamaAuditee" class="form-group"> <label for="id_NamaAuditee" class="col-form-label  requiredField">
-                Status<span class="asteriskField">*</span> </label> <div class="">
-                    {% if a.Status == 1 %}
-                        Aktif
-                    {% else %}
-                        Tidak Aktif
-                    {% endif %}
-            </div>
+						</div>
+					</div>
+					<div class="tab-pane  p-20" id="profile" role="tabpanel">
+						<table id="demo-foo-addrow2" class="table table-bordered table-hover toggle-circle" data-page-size="7">
+							<thead>
+								<tr>
+									<th>Bil</th>
+									<th>Nama Pemantau</th>
+									<th>Bahagian</th>
+									<th>Status</th>
+									<th>Tindakan</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</div>
 	</div>
-    <p class="text-center">
-      <a href="{% url 'auditee_edit' a.pk %}" class="btn btn-success" >Kemaskini</a>
-      <a href="{% url 'auditee_remove' a.pk %}" class="btn btn-danger" >Hapus</a>
-    </p>
 </div>
-    <!--</div>-->
-
 {% endblock %}
-</div>
