@@ -36,8 +36,3 @@ class RefPerananForm(forms.ModelForm):
     class Meta:
         model = RefPeranan
         fields = ('Peranan', 'KodPeranan', 'Keterangan','Status',)
-
-
-# class DaftarPerananForm(forms.Form):
-#
-#     carian = forms.CharField(label='Carian',max_length=100,required=True)
