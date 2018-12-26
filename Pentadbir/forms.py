@@ -22,10 +22,3 @@ class SistemForm(forms.ModelForm):
     class Meta:
         model = Sistem
         fields = ('NamaSistem', 'Tahun', 'Status','PemilikSistem',)
-
-
-
-
-# class DaftarPerananForm(forms.Form):
-#
-#     carian = forms.CharField(label='Carian',max_length=100,required=True)
