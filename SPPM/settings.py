@@ -45,10 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'widget_tweaks',
     'django_python3_ldap',
     'Urusetia',
     'Pentadbir',
     'Penilaian',
+
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
